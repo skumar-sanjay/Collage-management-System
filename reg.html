@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+    #aa input:focus,
+    #aa input:valid {
+      border-color: #9b59b6;
+    }
+
+    .input-box select:focus,
+    .input-box select:valid {
+      border-color: #9b59b6;
+    }
+
+    .err {
+      color: red;
+    }
+
+    .color-them {
+      background-color: #2E97A7;
+      color: white;
+    }
+
+    .apna-li {
+      padding: 15px;
+    }
+
+    .font-color {
+      color: #2E97A7;
+      font-weight: bold;
+    }
+
+    form .button {
+      height: 45px;
+      margin: 35px;
+      margin-left: 2px;
+    }
+
+    form .button input {
+      height: 100%;
+      width: 20%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #007bff;
+    }
+
+    #aa {
+
+      box-shadow: 10px 2px 20px 8px skyblue;
+      border-radius: 6px;
+    }
+
+    label {
+      font-weight: bold;
+      font-family: serif;
+    }
+  </style>
+  <script>
+    function getall(txtnum, txtfname, txtmname, txtpmob, txtemail, txtmob, txtqu, txtcity, txtcadd, txtpadd, txtpass, txtcpass, sptxtnum, sptxtfname, sptxtmname, sptxtpmob, sptxtemail, sptxtmob, sptxtqu, sptxtcity, sptxtcadd, sptxtpadd, sptxtpass, sptxtcpass) {
+      var status = true;
+      var x;
+      var name = txtnum.value.trim();
+      var fname = txtfname.value.trim();
+      var mname = txtmname.value.trim();
+      var pmob = txtpmob.value.trim();
+      var email = txtemail.value.trim();
+      var mobno = txtmob.value.trim();
+      var ques = txtqu.value.trim();
+      var city = txtcity.value.trim();
+      var cadd = txtcadd.value.trim();
+      var padd = txtpadd.value.trim();
+      var pass = txtpass.value.trim();
+      var cpass = txtcpass.value.trim();
+      //clearing all previous error masseges......
+      var sp = document.getElementsByClassName("err");
+      for (x = 0; x < sp.length; x++) {
+        sp[x].innerText = "";
+      }
+      // validation in name...........
+      if (name.length == 0) {
+        sptxtnum.innerText = "Plese enter your name";
+        status = false;
+      }
+      else {
+        x = getWordCount(name)
+        if (x < 2) {
+          sptxtnum.innerText = "Plese enter your full name";
+          status = false;
+        }
+      }
+      // validation of fname
+      if (fname.length == 0) {
+        sptxtfname.innerText = "Plese enter your father's name";
+        status = false;
+      }
+      //validation of mname
+      if (mname.length == 0) {
+        sptxtmname.innerText = "Plese enter your father's name";
+        status = false;
+      }
+      //validation of pmob
+      if (pmob.length == 0) {
+        sptxtpmob.innerText = "Plese enter your mobile number";
+        status = false;
+      }
+      else if (pmob.length != 10) {
+        sptxtpmob.innerText = " Mobile number must have 10 digits.";
+        status = false;
+      }
+      else {
+        var ch = pmob.charCodeAt(0);
+        if (!(ch >= 54 && ch <= 57)) {
+          sptxtpmob.innerText = "invalid indian mobile number.";
+          status = false;
+        }
+
+
+      }
+      // validation of email
+      if (email.length == 0) {
+        sptxtemail.innerText = "Plese enter your email";
+        status = false;
+      }
+      else {
+        x = getWordCount(email)
+        if (x < 2) {
+          sptxtemail.innerText = "Missing '@' or 'gmail.com'";
+          status = false;
+        }
+
+      }
+      //validation of number
+      if (mobno.length == 0) {
+        sptxtmob.innerText = "Plese enter your mobile number";
+        status = false;
+      }
+      else if (mobno.length != 10) {
+        sptxtmob.innerText = " Mobile number must have 10 digits.";
+        status = false;
+      }
+      else {
+        var ch = mobno.charCodeAt(0);
+        if (!(ch >= 54 && ch <= 57)) {
+          sptxtmob.innerText = "invalid indian mobile num.";
+          status = false;
+        }
+
+
+      }
+      // validation of qualification
+      if (ques.length == 0) {
+        sptxtqu.innerText = "plese select your qualification";
+        status = false;
+      }
+      // validation of city..............
+      if (city.length == 0) {
+        sptxtcity.innerText = "plese select your City";
+        status = false;
+      }
+
+      //validating cureent address....
+      if (cadd.length == 0) {
+        sptxtcadd.innerText = "plese enter your current address";
+        stetus = false;
+      }
+      else {
+        x = getWordCount(cadd);
+        if (x < 4) {
+          sptxtcadd.innerText = "Plese enter your complete current address";
+          status = false;
+        }
+      }
+      //validation permanent address...
+      if (padd.length == 0) {
+        sptxtpadd.innerText = "plese enter your  permanent address";
+        stetus = false;
+      }
+      else {
+        x = getWordCount(padd);
+        if (x < 4) {
+          sptxtpadd.innerText = "plese enter your complete permanent address";
+          stetus = false;
+        }
+      }
+      // validating password........
+      if (pass.length == 0) {
+        sptxtpass.innerText = "Plese enter your password";
+        status = false;
+
+      }
+      else if (pass.length < 8) {
+        sptxtpass.innerText = "Password must have 8 charcheter";
+        status = false;
+      }
+      else {
+        var spcount = 0, lcount = 0, ucount = 0, dcount = 0;
+        for (x = 0; x < pass.length; x++) {
+          var ascii = pass.charCodeAt(x);
+          if (ascii >= 65 && ascii <= 90)
+            ucount++;
+          else if (ascii >= 97 && ascii <= 122)
+            lcount++;
+          else if (ascii >= 48 && ascii <= 57)
+            dcount++;
+          else
+            spcount++;
+        }
+        if (ucount == 0 || lcount == 0 || dcount == 0 || spcount == 0) {
+          sptxtpass.innerText = "Password must have 1 uppercase, 1 lower case , one digit and 1 special symbol.";
+          status = false;
+        }
+      }
+      //validating confirm pass....
+      if (cpass.length == 0) {
+        sptxtcpass.innerText = "Plese confirm your password";
+        status = false;
+      }
+      else if (pass != cpass) {
+        sptxtcpass.innerText = "Mismatched password";
+        status = false;
+      }
+
+
+
+
+
+
+      return status;
+
+
+    }
+    function getWordCount(str) {
+      var count = 1, x;
+      for (x = 0; x < str.length; x++) {
+        var ch = str.charAt(x)
+        if (ch == '.' || ch == ',' || ch == '!' || ch == '?' || ch == ' ' || ch == '@') {
+          count++;
+        }
+      }
+
+
+      return count;
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-4 bg-light p-0 m-0 ">
+            <center><img src="./images/1-removebg-preview.png" style=" height: 15vh; padding: 0; margin: 0px; " />
+            </center>
+          </div>
+          <!--logo end-->
+          <!--navbar start-->
+          <div class="col-sm-8 mt-0 pt-2 bg-light">
+            <nav class="navbar navbar-expand-lg">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                  <i class="fa fa-graduation-cap fa-lg" style="color: #2E97A7;"></i>
+                </a>
+                <button class="navbar-toggler" style="background-color: #EEEEEE; border-color:#362FD9 ; " type="button"
+                  data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon" style="width:1em;height:1em;"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " aria-current="page" href="./Index1.html">Home</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="./about.html">About</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="./deprt.html">Department</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="./galary1.html">Gallery</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="#">Register</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="./login.html">Login</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="./signup.html">Sign-up</a>
+                    </li>
+                    <li class="nav-item apna-li">
+                      <a class="nav-link font-color " href="./contect us.html">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <!--navbar end-->
+        </div>
+        <div class="col-sm-12">
+          <div class="container mt-5 mb-5">
+            <div class="row">
+              <div class="col-sm-3">
+
+              </div>
+
+              <div class="col-sm-6" id="aa">
+                <b>
+                  <h2 style="text-align: center; color: #2E97A7; padding-bottom: 10px; padding-top: 10px;" >Registration Form</h2>
+                </b>
+                <form class="row g-3">
+                  <div class="dv"></div>
+                  <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="txtnum" placeholder="Enter Your Name">
+                    <span id="sptxtnum" class="err"></span>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Father's Name</label>
+                    <input type="text" class="form-control" id="txtfname" placeholder="Enter Your Father's Name">
+                    <span id="sptxtfname" class="err"></span>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Mother's Name</label>
+                    <input type="text" class="form-control" id="txtmname" placeholder="Enter Your Mother's  Name">
+                    <span id="sptxtmname" class="err"></span>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Parents Phone Number</label>
+                    <input type="number" class="form-control" id="txtpmob" placeholder="Enter Your Parents number ">
+                    <span id="sptxtpmob" class="err"></span>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="txtemail" placeholder="Enter Your Email">
+                    <span id="sptxtemail" class="err"></span>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Mobile number</label>
+                    <input type="number" class="form-control" id="txtmob" placeholder="Enter Your Number">
+                    <span id="sptxtmob" class="err"></span>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-box ">
+                      <label for="inputEmail4" class="form-label">Qualification</label>
+                      <select id="txtqu" class="form-control">
+                        <option value="">---SELECT YOUR QUALIFICATION---</option>
+                        <option>INTERMEDIAT</option>
+                        <option>DIPLOMA IN CSE</option>
+                        <option>DIPLOMA IN EEE</option>
+                        <option>DIPLOMA IN CIVIL</option>
+                      </select>
+                      <span id="sptxtqu" class="err"></span>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-box ">
+                      <label for="inputEmail4" class="form-label">City</label>
+                      <select id="txtcity" class="form-control">
+                        <option value="">------SELECT YOUR CITY------</option>
+                        <option>AZAMGARH</option>
+                        <option>LUCKNOW</option>
+                        <option>DELHI</option>
+                        <option>KANPUR</option>
+                        <option>CHITRAKOOT</option>
+                        <option>SATNA</option>
+                        <option>MIRJAPUR</option>
+                        <option>VANARSHI</option>
+                        <option>JAUNPUR</option>
+                        <option>MAU</option>
+                        <option>PATNA</option>
+                        <option>NOIDA</option>
+                        <option>KOLKATA</option>
+                      </select>
+                      <span id="sptxtcity" class="err"></span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Current Address</label>
+                    <input type="text" class="form-control" id="txtcadd" placeholder="Enter Your Current Address">
+                    <span id="sptxtcadd" class="err"></span>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Permanent Address</label>
+                    <input type="text" class="form-control" id="txtpadd" placeholder="Enter Your Permanent Address">
+                    <span id="sptxtpadd" class="err"></span>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="txtpass" placeholder="Create Your Password">
+                    <span id="sptxtpass" class="err"></span>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="txtcpass" placeholder="Confirm  Password">
+                    <span id="sptxtcpass" class="err"></span>
+
+                  </div>
+                  <div class="button">
+                    <input type="submit" value="Register"
+                      onclick="return getall(txtnum,txtfname,txtmname,txtpmob,txtemail,txtmob,txtqu,txtcity,txtcadd,txtpadd,txtpass,txtcpass,sptxtnum,sptxtfname,sptxtmname,sptxtpmob,sptxtemail,sptxtmob,sptxtqu,sptxtcity,sptxtcadd,sptxtpadd,sptxtpass,sptxtcpass)">
+                  </div>
+
+              </div>
+              </form>
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <!--footer start-->
+        <div style="position: relative; bottom: 0px;" class="row mt-5 ">
+          <div class="col-sm-12 color-them ">
+            <div class="row ps-5 pe-5 ">
+              <div class="col-sm-3 text-center mt-2 mb-2  ">
+                <img src="./images/1.png" style="height: 25vh; margin-bottom: 3px;">
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia inventore quidem nemo reiciendis
+                  labore.
+                  Repellat fugit officiis sint nemo ipsam pariatur perferendis? Fuga quas, corporis perferendis magni
+                  molestias doloribus expedita.</p>
+              </div>
+              <div class="col-sm-3 ">
+                <h6 class="p-3 ">Usefull Links</h6>
+                <ul style="list-style-type:none;">
+                  <a href="./Index1.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Home</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;About us</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Department</li>
+                  </a>
+                  <a href="./reg.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Resgister</li>
+                  </a>
+                  <a href="./galary1.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Gallery</li>
+                  </a>
+                  <a href="./login.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Login</li>
+                  </a>
+                  <a href="./signup.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Sign-up</li>
+                  </a>
+                  <a href="./contect us.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Contact us</li>
+                  </a>
+                </ul>
+              </div>
+              <div class="col-sm-3">
+                <h6 class="p-3">Most Improtant Links</h6>
+                <ul style="list-style-type:none;">
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;AKTU Board</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Home Minsitry
+                    </li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Department</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Resgister</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Gallery</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Login</li>
+                  </a>
+                  <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                    <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Contact us</li>
+                  </a>
+                </ul>
+              </div>
+              <div class="col-sm-3">
+                <div style="border-bottom: 1px solid gold;">
+                  <h6 class="text-center pt-3  ">OUR NEWSLETTER</h6>
+                </div>
+                <p class="ms-3 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci nostrum
+                  earum,
+                  excepturi atque fuga quis porro et cumque eos praesentium, id, nisi quae blanditiis repudiandae.
+                  Doloribus
+                  modi magnam sunt.
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum fugit error neque eveniet
+                  reprehenderit,
+                  officia reiciendis, inventore consequatur quo ipsam aperiam corporis tempore aspernatur excepturi
+                  laudantium expedita nam sit iste!
+                </p>
+                <div class="text-center pb-1"><input class="p-1" type="email" style="border: none;"
+                    placeholder="Enter Email" /><button class="p-1"
+                    style="border: none; background-color: black; color: white;">Subscribe</button></div>
+                <div class="text-center pt-3">
+                  <i class="fa-brands fa-facebook pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="fa-brands fa-twitter pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="fa-brands fa-whatsapp pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="fa-brands fa-instagram pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--footer end-->
+        <!---->
+        <div class="row" style="position: relative; bottom: -1px;">
+          <div class="col-sm-12 text-center bg-dark text-light p-3">
+            &copy;2018 Copyright to Kamadgiri Software Solutions Private Limited. All Rights Reserved.
+          </div>
+        </div>
+        <!---->
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

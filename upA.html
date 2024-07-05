@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 mt-5 mb-5" style="display: flex; justify-content: center; align-items: center;">
+                <form method="post" action="save.jsp">
+                    <table>
+                        <tr>
+                            <td class="form-label">Name :- </td>
+                            <td><input class="form-control m-2" type="text" id="stuname" name="stuname">
+                                <span class="err" id="spname"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Department :- </td>
+                            <td><select class="form-select m-2" id="studept" name="studept">
+                                    <option value="">Select....</option>
+                                    <option>Computer Science & Engg.</option>
+                                    <option>Information Technology</option>
+                                    <option>Eletrical Engg.</option>
+                                    <option>Electronics Engg.</option>
+                                    <option>Civil Engg.</option>
+                                </select>
+                                <span class="err" id="spdept"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Enrollment No :- </td>
+                            <td><input class="form-control m-2" type="text" id="sturoll" name="sturoll"><span class="err" id="sproll"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Subject :- </td>
+                            <td><input class="form-control m-2" type="text" id="stusub" name="stusub"><span class="err" id="spsub"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Upload Task :- </td>
+                            <td><input class="form-control m-2" type="file" id="stutask" name="stutask"><span class="err" id="sptask"></span></td>
+                        </tr>
+                    </table>
+                    <div style="margin-left:160px ;" class="mt-3">
+                        <input class="btn btn-primary" type="submit" value="submit" onclick="return validatetask()">
+                        <input class="btn btn-danger" type="reset" value="Reset">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var name, dept, roll, sub, task, x;
+        function validatetask() {
+            var stuname = document.getElementById('stuname');
+            var studept = document.getElementById('studept');
+            var sturoll = document.getElementById('sturoll');
+            var stusub = document.getElementById('stusub');
+            var stutask = document.getElementById('stutask');
+            var spname = document.getElementById('spname');
+            var spdept = document.getElementById('spdept');
+            var sproll = document.getElementById('sproll');
+            var spsub = document.getElementById('spsub');
+            var sptask = document.getElementById('sptask');
+
+            var status = true;
+
+            name = stuname.value.trim();
+            dept = studept.value;
+            roll = sturoll.value.trim();
+            sub = stusub.value.trim();
+            task = stutask.value;
+
+            var sp = document.getElementsByClassName("err");
+            for (x = 0; x < sp.length; x++) {
+                sp[x].innerText = "";
+            }
+
+            // Validate name.
+            if (name.length == 0) {
+                spname.innerText = "Enter your Name!";
+                status = false;
+            } else {
+                if (name.length < 4) {
+                    spname.innerText = "Please Enter Full Name";
+                    status = false;
+                }
+            }
+
+            // Validate department
+            if (dept === "") {
+                spdept.innerText = "Please Select Department";
+                status = false;
+            }
+
+            // Validate Enrollment no
+            if (roll.length == 0) {
+                sproll.innerText = "Please Enter Enrollment";
+                status = false;
+            } else if (roll.length != 15) {
+                sproll.innerText = "Enrollment must have 15 digits";
+                status = false;
+            }
+
+            // Validate subject
+            if (sub.length == 0) {
+                spsub.innerText = "Enter Your Subject";
+                status = false;
+            }
+
+            // Validate task 
+            if (task.length == 0) {
+                sptask.innerText = "Please Select File";
+                status = false;
+            } else {
+                var myfile = stutask.files[0];
+                var fname = myfile.name;
+                var filesize = myfile.size;
+                var extension = fname.substring(fname.lastIndexOf('.')).toUpperCase();
+                if (extension !== ".PDF") {
+                    sptask.innerText = "Upload Invalid File";
+                    status = false;
+                } else {
+                    var sizefile = filesize / 1024;
+                    if (sizefile > 1000) {
+                        sptask.innerText = "File size is too large";
+                        status = false;
+                    }
+                }
+            }
+
+            return status;
+        }
+    </script>
+</body>
+</html>

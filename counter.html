@@ -1,0 +1,136 @@
+<!--counter using js-->
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script>
+            let counts = setInterval(updated);
+            let upto = [0,200,67,122];
+            function updated() {
+            let count1 = document.getElementById("counter1");
+            let count2 = document.getElementById("counter2");
+            let count3 = document.getElementById("counter3");
+            let count4 = document.getElementById("counter4");
+            var count=[count1,count2,count3,count4];
+            for (x=0;x<upto.length;x++)
+            {
+                count[x].innerHTML=++upto[x];
+                if (upto[x] === 500)
+                {
+                  clearInterval(counts);
+                }
+                
+            }
+        }
+        </script>
+        <style>
+            .wrapx{
+                position:absolute;
+                width: 80vw;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                display: flex;
+                justify-content: space-around;
+                gap: 10px;
+            }
+            .conta{
+                width: 28vmin;
+                height: 28vmin;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                padding: 1em 0;
+                position: relative;
+                font-size: 16px;
+                border-radius: 0.5em;
+                background-color: #21242b;
+                border-bottom: 10px solid #18f98f;
+            }
+            .conta i{
+                color: #18f98f;
+                font-size: 2.5em;
+                text-align: center;
+            }
+            .conta .num{
+                color: #ffffff;
+                display: grid;
+                place-items: center;
+                font-weight: 600;
+                font-size: 3em;
+            }
+            .conta .text{
+                color: #e0e0e0;
+                font-weight: 400;
+                text-align: center;
+                font-size: 1em;
+                pad:0.7em 0;
+                line-height: 0;
+            }
+            @media screen and (max-width:1024px) {
+                .wrapx{
+                    width: 85vw;
+                }
+                .conta{
+                    height: 26vmin;
+                    width: 26vmin;
+                    font-size: 12px;
+                }
+                
+            }
+            @media screen and (max-width: 768px) {
+                .wrapx{
+                    width: 90vw;
+                    flex-wrap: wrap;
+                    gap: 30px;
+                }
+                .conta{
+                    width: calc(50% - 40%);
+                    height: 30vmin;
+                    font-size: 14px;
+                }
+            }
+            @media screen and (max-width: 480px) {
+                .wrapx{
+                    gap: 15px;
+                }
+                .conta{
+                    width: 100%;
+                    height: 25vmin;
+                    font-size: 8px;
+                }
+            }
+        </style>
+    </head>
+    <body style="background-color: black;" >
+        <div class="wrapx">
+            <div class="conta">
+                <i class="fas fa-utensils"></i>
+                <span id="counter1" class="num">000</span>
+                <span class="text">Numbers of Student</span>
+            </div>
+
+            <div class="conta">
+                <i class="fas fa-utensils"></i>
+                <span id="counter2" class="num">000</span>
+                <span class="text">Placement</span>
+            </div>
+
+            <div class="conta">
+                <i class="fas fa-utensils"></i>
+                <span id="counter3" class="num">000</span>
+                <span class="text">...</span>
+            </div>
+
+            <div class="conta">
+                <i class="fas fa-utensils"></i>
+                <span id="counter4" class="num">000</span>
+                <span class="text">...</span>
+            </div>
+
+
+        </div>
+        
+    </body>
+</html>

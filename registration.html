@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      background-color: #2E97A7;
+      background-size: cover;
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      padding: 25px;
+      border-radius: 5px;
+      box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.15);
+      background: white;
+      color: #070707;
+
+    }
+
+    .container .title {
+      font-size: 25px;
+      font-weight: 500;
+      position: relative;
+      top: 30px;
+    }
+
+    .container .title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      width: 30px;
+      border-radius: 5px;
+      background: #2E97A7;
+
+    }
+
+    .content form .user-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 12px 0;
+      color: #0f0f0f;
+      margin-top: 40px;
+    }
+
+    form .user-details .input-box {
+      margin-bottom: 15px;
+      width: calc(100% / 2 - 20px);
+    }
+
+    form .input-box span.details {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .user-details .input-box input {
+      height: 45px;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .user-details .input-box input:focus,
+    .user-details .input-box input:valid {
+      border-color: #9b59b6;
+    }
+
+    form .button {
+      height: 45px;
+      margin: 35px 0
+    }
+
+    form .button input {
+      height: 100%;
+      width: 20%;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      /* background: linear-gradient(135deg, #71b7e6, #9b59b6); */
+      background-color: rgb(50, 50, 206);
+    }
+
+    @media(max-width: 584px) {
+      .container {
+        max-width: 100%;
+      }
+
+      form .user-details .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+      }
+
+      form .category {
+        width: 100%;
+      }
+
+      .content form .user-details {
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+
+    }
+
+    @media(max-width: 459px) {
+      .container .content .category {
+        flex-direction: column;
+      }
+    }
+
+    select {
+      height: 45px;
+      width: 100%;
+      outline: none;
+      font-size: 16px;
+      border-radius: 5px;
+      padding-left: 15px;
+      border: 1px solid #ccc;
+      border-bottom-width: 2px;
+      transition: all 0.3s ease;
+      border-color: #9b59b6;
+    }
+
+    .err {
+      color: #ff0c0c;
+    }
+
+    .image-popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="title">Registration</div>
+      <div class="content" style="margin-top:10%;">
+        <form action="save.jsp" method="post">
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Full Name</span>
+              <input type="text" placeholder="Enter your name" id="txtnum">
+              <span id="sptxtnum" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Username</span>
+              <input type="text" placeholder="Enter your username" id="txtuname">
+              <span id="sptxtuname" class="err"></span>
+
+
+            </div>
+            <div class="input-box">
+              <span class="details">Email</span>
+              <input type="text" placeholder="Enter your email" id="txtemail">
+              <span id="sptxtemail" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Phone Number</span>
+              <input type="number" placeholder="Enter your number" id="txtmob">
+              <span id="sptxtmob" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Qualification</span>
+              <select id="txtqu">
+                <option value="">--SELECT YOUR QUALIFICATION--</option>
+                <option>INTERMEDIAT</option>
+                <option>DIPLOMA IN CSE</option>
+                <option>DIPLOMA IN EEE</option>
+                <option>DIPLOMA IN CIVIL</option>
+              </select>
+              <span id="sptxtqu" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">City</span>
+              <select id="txtcity">
+                <option value="">------SELECT YOUR CITY------</option>
+                <option>AZAMGARH</option>
+                <option>LUCKNOW</option>
+                <option>DELHI</option>
+                <option>KANPUR</option>
+                <option>CHITRAKOOT</option>
+                <option>SATNA</option>
+                <option>MIRJAPUR</option>
+                <option>VANARSHI</option>
+                <option>JAUNPUR</option>
+                <option>MAU</option>
+                <option>PATNA</option>
+                <option>NOIDA</option>
+                <option>KOLKATA</option>
+              </select>
+              <span id="sptxtcity" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Current Address</span>
+              <input type="text" placeholder="Enter your Current Address code" id="txtcadd">
+              <span id="sptxtcadd" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Permanent Address</span>
+              <input type="text" placeholder="Enter your Permanent Address" id="txtpadd">
+              <span id="sptxtpadd" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Password</span>
+              <input type="password" placeholder="Enter your password" id="txtpass">
+              <span id="sptxtpass" class="err"></span>
+            </div>
+            <div class="input-box">
+              <span class="details">Confirm Password</span>
+              <input type="password" placeholder="Confirm your password" id="txtcpass">
+              <span id="sptxtcpass" class="err"></span>
+            </div>
+          </div>
+          <div class="button">
+            <input type="submit" value="Register"
+              onclick="return getfun(txtnum,txtuname,txtemail,txtmob,txtqu,txtpass,txtcpass,txtcity,txtcadd,txtpadd,sptxtnum,sptxtuname,sptxtemail,sptxtmob,sptxtqu,sptxtpass,sptxtcpass,sptxtcity,sptxtcadd,sptxtpadd)">
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+
+
+<script>
+  function getfun(txtnum, txtuname, txtemail, txtmob, txtqu, txtpass, txtcpass, txtcity, txtcadd, txtpadd,
+    sptxtnum, sptxtuname, sptxtemail, sptxtmob, sptxtqu, sptxtpass, sptxtcpass, sptxtcity, sptxtcadd, sptxtpadd) {
+    var status = true;
+    var x;
+    var name = txtnum.value.trim();
+    var usern = txtuname.value.trim();
+    var email = txtemail.value.trim();
+    var mobno = txtmob.value.trim();
+    var ques = txtqu.value.trim();
+    var pass = txtpass.value.trim();
+    var cpass = txtcpass.value.trim();
+    var city = txtcity.value.trim();
+    var cadd = txtcadd.value.trim();
+    var padd = txtpadd.value.trim();
+
+    //clearing all previous error masseges......
+    var sp = document.getElementsByClassName("err");
+    for (x = 0; x < sp.length; x++) {
+      sp[x].innerText = "";
+    }
+    // validation in name...........
+    if (name.length == 0) {
+      sptxtnum.innerText = "Plese enter your name";
+      status = false;
+    }
+    else {
+      x = getWordCount(name)
+      if (x < 2) {
+        sptxtnum.innerText = "Plese enter your full name";
+        status = false;
+      }
+    }
+    //validation of user name.....
+    if (usern.length == 0) {
+      sptxtuname.innerText = "Plese enter user name";
+      status = false;
+    }
+    else {
+      if (usern.length < 5) {
+        sptxtuname.innerText = "user name must be required 5 charchecter";
+        status = false;
+      }
+    }
+    // validation of email
+    if (email.length == 0) {
+      sptxtemail.innerText = "Plese enter your email";
+      status = false;
+    }
+    else {
+      x = getWordCount(email)
+      if (x < 2) {
+        sptxtemail.innerText = "Plese enter valid email";
+        status = false;
+      }
+
+    }
+    //validation of number
+    if (mobno.length == 0) {
+      sptxtmob.innerText = "Plese enter your mobile number";
+      status = false;
+    }
+    else if (mobno.length != 10) {
+      sptxtmob.innerText = " Mobile number must have 10 digits.";
+      status = false;
+    }
+    else {
+      var ch = mobno.charCodeAt(0);
+      if (!(ch >= 54 && ch <= 57)) {
+        sptxtmob.innerText = "invalid indian mobile num.";
+        status = false;
+      }
+
+
+    }
+    // validation of qualification
+    if (ques.length == 0) {
+      sptxtqu.innerText = "plese select your qualification";
+      status = false;
+    }
+    // validation of city..............
+    if (city.length == 0) {
+      sptxtcity.innerText = "plese select your City";
+      status = false;
+    }
+    // validating password........
+    if (pass.length == 0) {
+      sptxtpass.innerText = "Plese enter your password";
+      status = false;
+
+    }
+    else if (pass.length < 8) {
+      sptxtpass.innerText = "Password must have 8 charcheter";
+      status = false;
+    }
+    else {
+      var spcount = 0, lcount = 0, ucount = 0, dcount = 0;
+      for (x = 0; x < pass.length; x++) {
+        var ascii = pass.charCodeAt(x);
+        if (ascii >= 65 && ascii <= 90)
+          ucount++;
+        else if (ascii >= 97 && ascii <= 122)
+          lcount++;
+        else if (ascii >= 48 && ascii <= 57)
+          dcount++;
+        else
+          spcount++;
+      }
+      if (ucount == 0 || lcount == 0 || dcount == 0 || spcount == 0) {
+        sptxtpass.innerText = "Password must have 1 uppercase, 1 lower case , one digit and 1 special symbol.";
+        status = false;
+      }
+    }
+    //validating confirm pass....
+    if (cpass.length == 0) {
+      sptxtcpass.innerText = "Plese confirm your password";
+      status = false;
+    }
+    else if (pass != cpass) {
+      sptxtcpass.innerText = "Mismatched password";
+      status = false;
+    }
+
+    //validating cureent address....
+    if (cadd.length == 0) {
+      sptxtcadd.innerText = "plese enter your current address";
+      stetus = false;
+    }
+    else {
+      x = getWordCount(cadd);
+      if (x < 4) {
+        sptxtcadd.innerText = "Plese enter your complete current address";
+        status = false;
+      }
+    }
+    //validation permanent address...
+    if (padd.length == 0) {
+      sptxtpadd.innerText = "plese enter your  permanent address";
+      stetus = false;
+    }
+    else {
+      x = getWordCount(padd);
+      if (x < 4) {
+        sptxtpadd.innerText = "plese enter your complete permanent address";
+        stetus = false;
+      }
+    }
+
+
+
+
+    return status;
+
+  }
+  function getWordCount(str) {
+    var count = 1, x;
+    for (x = 0; x < str.length; x++) {
+      var ch = str.charAt(x)
+      if (ch == '.' || ch == ',' || ch == '!' || ch == '?' || ch == ' ' || ch == '@') {
+        count++;
+      }
+    }
+
+
+    return count;
+  }
+  function getaddcount(str) {
+    var count = 1, x;
+    for (x = 0; x < str.length; x++) {
+      var ch = str.charAt(x)
+      if (ch == '@' && ch == '.') {
+        count++;
+      }
+    }
+  }
+
+
+</script>
+
+</html>

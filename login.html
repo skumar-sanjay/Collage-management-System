@@ -1,0 +1,436 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="login.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> -->
+    <style>
+        .err {
+            color: red;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .color-them {
+            background-color: #2E97A7;
+            color: white;
+        }
+
+        .apna-li {
+            padding: 15px;
+        }
+
+        .font-color {
+            color: #2E97A7;
+            font-weight: bold;
+        }
+
+        #loginpage {
+            background-color: aqua;
+            height: 30px;
+            width: 70px;
+            border: 2px solid aqua;
+            margin-left: 35%;
+            border-radius: 6px;
+            font-size: 18px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background: url('dilli.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            animation: animateBg 5s linear infinite;
+        }
+
+        .login-box {
+            position: relative;
+            width: 400px;
+            height: 450px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            background-color: whitesmoke;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: skyblue;
+            text-align: center;
+        }
+
+        .input-box {
+            width: 310px;
+            position: relative;
+            margin: 30px 0;
+            border-bottom: 2px solid skyblue;
+        }
+
+        .input-box label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            font-size: 1em;
+            color: skyblue;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .input-box input:focus~label,
+        .input-box input:valid~label {
+            top: -5px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 10%;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            background: transparent;
+            color: skyblue;
+            padding: 0 35px 0 5px;
+        }
+
+        .input-box .icon {
+            position: absolute;
+            margin-top: 15px;
+            right: 8px;
+            color: skyblue;
+            font-size: 1.2em;
+            line-height: 53px;
+        }
+
+        .R-forget {
+            margin: -15px 0 15px;
+            font-size: .9em;
+            color: skyblue;
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .R-forget label input {
+            margin-right: 3px;
+        }
+
+        .R-forget a {
+            color: skyblue;
+            text-decoration: none;
+        }
+
+        .R-forget a:hover {
+            text-decoration: underline;
+        }
+
+        .btn1 {
+            width: 100%;
+            height: 40px;
+            background: skyblue;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 1em;
+            color: white;
+            font-weight: 500;
+        }
+
+        .register-link {
+            font-size: .9em;
+            color: skyblue;
+            text-align: center;
+            margin: 25px 0 10px;
+        }
+
+        .register-link p a {
+            color: skyblue;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-link p a:hover {
+            text-decoration: underline;
+        }
+
+        @media(max-width: 360px) {
+            .login-box {
+                width: 100%;
+                height: 100vh;
+                border: none;
+                border-radius: 0;
+            }
+
+            .input-box {
+                width: 290px;
+            }
+        }
+    </style>
+    <script>
+        function forget(txt, ptxt, sptxt, spptxt) {
+            var status = true;
+            var pass = txt.value.trim();
+            var cpass = ptxt.value.trim();
+            if (pass.length == 0) {
+                sptxt.innerText = "*Plese enter Email";
+                status = false;
+            }
+            if (cpass.length == 0) {
+                spptxt.innerText = "*Plese enter Password";
+                status = false;
+            }
+            else{
+                if(!(cpass.length==8))
+                {
+                    spptxt.innerText=" password must be 8 Digits.";
+                    status=false;
+                }
+            }
+            return status;
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-sm-4 bg-light">
+                        <center><img src="./images/1-removebg-preview.png"
+                                style=" height: 15vh; padding: 0; margin: 0px; " /></center>
+                    </div>
+                    <!--logo end-->
+                    <!--navbar start-->
+                    <div class="col-sm-8 mt-0 pt-3 bg-light">
+                        <nav class="navbar navbar-expand-lg">
+                            <div class="container-fluid">
+                                <a class="navbar-brand" href="#">
+                                    <i class="fa fa-graduation-cap fa-lg" style="color: #2E97A7;"></i>
+                                </a>
+                                <button class="navbar-toggler"
+                                    style="background-color: #EEEEEE; border-color:#362FD9 ; " type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                                    aria-controls="navbarSupportedContent" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon" style="width:1em;height:1em;"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " aria-current="page" href="./Index1.html">Home</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="./about.html">About</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="./deprt.html">Department</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="./galary1.html">Gallery</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="./reg.html">Register</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="#">Login</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="./signup.html">Sign-up</a>
+                                        </li>
+                                        <li class="nav-item apna-li">
+                                            <a class="nav-link font-color " href="./contect us.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <!--navbar end-->
+                </div>
+                <div class="col-sm-12">
+                    <section>
+                        <div class="login-box">
+                            <form action="file.jsp" method="get">
+                                <h2>LOGIN </h2>
+                                <div class="input-box">
+                                    <input type="text" id="txt" placeholder="Email id"><br><!--Input name-->
+                                    <span id="sptxt" class="err" style="width: 20%;"></span><!--Error Msg-->
+
+                                </div>
+                                <div class="input-box">
+                                    <input type="password" placeholder="Password"
+                                        id="ptxt"><br><!--Password input Msg-->
+                                    <span id="spptxt" class="err" style="width: 20%;"></span><!--Password Error Msg-->
+                                </div>
+                                <div class="R-forget Password">
+                                    <!-- <label>Forgate Pasward</label> -->
+                                    <a href="./forgetpassword.html">Forget Password</a>
+                                </div>
+                                <input type="submit" value="Login" id="loginpage" class="btn1"
+                                    onclick="return forget(txt,ptxt,sptxt,spptxt)">
+                                <div class="register-link">
+                                    <p>Don't have account?</p>
+
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-sm-12 m-0 p-0">
+                    <!--footer start-->
+                    <div style="position: relative; bottom: 0px;" class="row ">
+                        <div class="col-sm-12 color-them  ">
+                            <div class="row ps-5 pe-5 ">
+                                <div class="col-sm-3 text-center mt-2 mb-2  ">
+                                    <img src="./images/1.png" style="height: 25vh; margin-bottom: 3px;">
+                                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia inventore quidem
+                                        nemo reiciendis labore.
+                                        Repellat fugit officiis sint nemo ipsam pariatur perferendis? Fuga quas,
+                                        corporis perferendis magni
+                                        molestias doloribus expedita.</p>
+                                </div>
+                                <div class="col-sm-3 ">
+                                    <h6 class="p-3 ">Usefull Links</h6>
+                                    <ul style="list-style-type:none;">
+                                        <a href="./Index1.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp;Home</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp;About us</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp; Department</li>
+                                        </a>
+                                        <a href="./reg.html"
+                                            style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp; Resgister</li>
+                                        </a>
+                                        <a href="./galary1.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp; Gallery</li>
+                                        </a>
+                                        <a href="./login.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp;Login</li>
+                                        </a>
+                                        <a href="./signup.html"
+                                            style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp;Sign-up</li>
+                                        </a>
+                                        <a href="./contect us.html"
+                                            style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp;Contact us</li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <h6 class="p-3">Most Improtant Links</h6>
+                                    <ul style="list-style-type:none;">
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">
+                                                &rightarrow;&nbsp;AKTU Board</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px;">
+                                                &rightarrow;&nbsp; Home Minsitry</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px;">
+                                                &rightarrow;&nbsp; Department</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px;">
+                                                &rightarrow;&nbsp; Resgister</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px;">
+                                                &rightarrow;&nbsp; Gallery</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px;">
+                                                &rightarrow;&nbsp; Login</li>
+                                        </a>
+                                        <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                                            <li style="border-bottom: 1px solid black; padding-bottom: 5px;">
+                                                &rightarrow;&nbsp; Contact us</li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div style="border-bottom: 1px solid gold;">
+                                        <h6 class="text-center pt-3  ">OUR NEWSLETTER</h6>
+                                    </div>
+                                    <p class="ms-3 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
+                                        adipisci nostrum earum,
+                                        excepturi atque fuga quis porro et cumque eos praesentium, id, nisi quae
+                                        blanditiis repudiandae. Doloribus
+                                        modi magnam sunt.
+                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum fugit error
+                                        neque eveniet reprehenderit,
+                                        officia reiciendis, inventore consequatur quo ipsam aperiam corporis tempore
+                                        aspernatur excepturi
+                                        laudantium expedita nam sit iste!
+                                    </p>
+                                    <div class="text-center pb-1"><input class="p-1" type="email" style="border: none;"
+                                            placeholder="Enter Email" />
+                                        <button class="p-1"
+                                            style="border: none; background-color: black; color: white;">Subscribe</button>
+                                    </div>
+                                    <div class="text-center pt-3">
+                                        <i class="fa-brands fa-facebook pt-1 "
+                                            style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i class="fa-brands fa-twitter pt-1 "
+                                            style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i class="fa-brands fa-whatsapp pt-1"
+                                            style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i class="fa-brands fa-instagram pt-1 "
+                                            style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--footer end-->
+                    <!---->
+                    <div class="row" style="position: relative; bottom: -1px;">
+                        <div class="col-sm-12 text-center bg-dark text-light p-3">
+                            &copy;2018 Copyright to Kamadgiri Software Solutions Private Limited. All Rights Reserved.
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

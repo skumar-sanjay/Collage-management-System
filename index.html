@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./stlye.css" />
+  <script src="./javascript.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    /* css for pop enquiry box start */
+
+    .err {
+      color: red;
+    }
+
+    .popup {
+      position: absolute;
+      top: 0%;
+      visibility: hidden;
+      transform: translate(1%, -10%) scale(0.1);
+      transition: transform 0.4s, top 0.4s;
+
+    }
+
+    .open-pop {
+      visibility: visible;
+      top: 30%;
+      transform: translate(1%, -10%) scale(1);
+    }
+
+    .tspop{
+      position: absolute;
+      top: 0%;
+      visibility: hidden;
+      transform: translate(1%,-10%) scale(0.1);
+      transition: transfrom 0.4s,top 0.4s;
+    }
+
+    .open-tspop{
+      visibility: visible;
+      top: 25%;
+      
+      transform: translate(1%, -10%) scale(1);
+    }
+
+    /* css for pop enquiry box  end */
+  </style>
+</head>
+
+<body class="m-0 p-0">
+  <div class="container-fluid">
+    <div class="row"> <!--first row start-->
+      <div class="col-sm-6 color-them d-flex justify-content-center p-2 ">
+        <i class="fa-solid fa-envelope pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp; <span class="pb-1"
+          style="color: #EEEEEE;">abc@gmail.com</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-solid fa-phone-volume pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp; <span class="pd-1"
+          style="color: #EEEEEE;">+91-9876565434</span>
+      </div>
+      <div class="col-sm-6 color-them d-flex justify-content-center p-2 ">
+        <i class="fa-brands fa-facebook pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-twitter pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-whatsapp pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-instagram pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+      </div>
+    </div> <!--first row end-->
+
+    <div class="row"> <!--second row start-->
+      <div class="col-sm-12 p-0">
+        <div id="slider">
+
+          <button class="btn self-btn m-0 p-0 ps-3 pe-3" onclick="openpop()"
+            style="position: absolute; top: 50%; right: -28px; transform: rotate(-90deg); ">Enqury</button>
+
+            <button class="btn self-btn m-0 p-0 ps-3 pe-3" onclick="taskpop()"
+            style="position: absolute; top: 70%; right:-46px; transform: rotate(-90deg); ">Upload Task</button>
+          <!--pop msg start Enq -->
+
+          <div id="popup" class="row popup">
+
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3 bg-info">
+              <div>
+                <img style="width: 20%; height: 10vh;  " src="./images/help.png" />
+                <h1>May I Help You?</h1>
+                <p>Please Fill your Details for Enquiry</p>
+              </div>
+            </div>
+            <div style="background-color: #2E97A7;" class="col-sm-7 enq-form border-end border-bottom border-top">
+              <div>
+                <form action="save.jsp" method="post" class="row g-3">
+                  <div class="col-sm-6">
+                    <label for="inputName4" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="txtname">
+                    <span id="spname" class="err"></span>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="inputEmail4" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="txtemail">
+                    <span id="spemail" class="err"></span>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="inputMobno" class="form-label">Mobile No</label>
+                    <input type="Number" class="form-control" id="txtmob">
+                    <span class="err" id="spmob"></span>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="txtcity">
+                    <span id="spcity" class="err"></span>
+                  </div>
+                  <div class="mb-3">
+                    <label for="FormControl">Enquiry message</label>
+                    <textarea class="form-control" id="txtmess" rows="4"></textarea>
+                    <span id="spmess" class="err"></span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger mb-2" onclick="closepop()">Close</button> &nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary mb-2" onclick="return validateform(txtname,txtemail,txtmob,txtcity,txtmess,
+                              spname,spemail,spmob,spcity,spmess)">Send Message</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+          </div>
+
+          <!--pop msg end Enq-->
+
+          <!--pop msg for upload task start-->
+
+          <div id="tspop" class=" container tspop">
+            <div class="row">
+              <div class="col-sm-3"></div>
+                <div class="row">
+            <div class="col-sm-6 color-them mt-5 mb-5 p-5" style="display: flex; justify-content: center; align-items: center;">
+                <form method="post" action="save.jsp">
+                    <table >
+                        <tr>
+                            <td class="form-label">Name :- </td>
+                            <td><input class="form-control m-2" type="text" id="stuname" name="stuname">
+                                <span class="err" id="spnames"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Department :- </td>
+                            <td><select class="form-select m-2" id="studept" name="studept">
+                                    <option value="">Select....</option>
+                                    <option>Computer Science & Engg.</option>
+                                    <option>Information Technology</option>
+                                    <option>Eletrical Engg.</option>
+                                    <option>Electronics Engg.</option>
+                                    <option>Civil Engg.</option>
+                                </select>
+                                <span class="err" id="spdept"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Enrollment No :- </td>
+                            <td><input class="form-control m-2" type="text" id="sturoll" name="sturoll"><span class="err" id="sproll"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Subject :- </td>
+                            <td><input class="form-control m-2" type="text" id="stusub" name="stusub"><span class="err" id="spsub"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="form-label">Upload Task :- </td>
+                            <td><input class="form-control m-2" type="file" id="stutask" name="stutask"><span class="err" id="sptask"></span></td>
+                        </tr>
+                    </table>
+                    <div style="margin-left:160px ;" class="mt-3">
+                        <!-- <input class="btn btn-primary" type="submit" value="submit" onclick="return validatetask()">
+                        <input class="btn btn-danger" type="reset" value="Reset"> -->
+                        <input type="button" class="btn btn-primary"  value="submit"
+                                onclick="return validatetask(stuname, studept, sturoll, stusub, stutask, spnames, spdept, sproll, spsub, sptask) ">
+                            <input class="btn btn-danger" type="reset" value="Reset">
+                            <input class="btn btn-danger" type="button" value="Close" onclick="taskpopCls()">
+                    </div>
+                </form>
+            </div>
+        </div>
+                <div class="col-sm-3"></div>
+            </div>
+        </div>
+
+          <!--pop msg for upload task end-->
+
+          <div id="slider-inner">
+            <!--Another row start in slider img-->
+            <div class="row m-0 p-0 ">
+              <div class="col-sm-4 bg-light p-0 m-0 ">
+                <center><img src="./images/1-removebg-preview.png" style=" height: 15vh; padding: 0; margin: 0px; " />
+                </center>
+              </div>
+              <!--logo end-->
+              <!--navbar start-->
+              <div class="col-sm-8 mt-0 pt-2 bg-light">
+                <nav class="navbar navbar-expand-lg">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                      <i class="fa fa-graduation-cap fa-lg" style="color: #2E97A7;"></i>
+                    </a>
+                    <button class="navbar-toggler" style="background-color: #EEEEEE; border-color:#362FD9 ; "
+                      type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon" style="width:1em;height:1em;"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./about.html">About</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./deprt.html">Department</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./galary1.html">Gallery</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./reg.html">Register</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./login.html">Login</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./signup.html">Sign-up</a>
+                        </li>
+                        <li class="nav-item apna-li">
+                          <a class="nav-link font-color " href="./contect us.html">Contact</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+              <!--navbar end-->
+              <div>
+                <h1 style="text-align: center;padding-top: 50px;">United Group Of Engg</h1>
+              </div>
+
+            </div> <!--Another row end-->
+            <a href="./reg.html" ><button class=" btn self-btn m-0 p-2" style="position: absolute; top:95%; right: 45%; ">Addmission</button></a>
+
+          </div>
+        </div>
+      </div>
+    </div> <!--second row end  -->
+
+    <!--Counter start-->
+    <div class="row">
+      <div class="col-sm-12 mb-2 ">
+        <div class="wrapx">
+          <div class="conta">
+            <i class="fa-solid fa-people-roof fa-xl"></i>
+            <span id="counter1" class="num">000</span>
+            <span class="text">Numbers of Student</span>
+          </div>
+
+          <div class="conta">
+            <i class="fa-solid fa-plane fa-xl"></i>
+            <span id="counter2" class="num">000</span>
+            <span class="text">Placement</span>
+          </div>
+
+          <div class="conta">
+            <i class="fa-solid fa-user fa-xl"></i>
+            <span id="counter3" class="num">000</span>
+            <span class="text">Brillient Students</span>
+          </div>
+
+          <div class="conta">
+            <i class="fa-solid fa-book fa-xl"></i>
+            <span id="counter4" class="num">000</span>
+            <span class="text">Projects</span>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!--Counter end-->
+
+    <!--About us session start-->
+
+    <div class="row mt-5 ">
+      <h1 class="text-center mt-3 mb-4 ">About us</h1>
+      <div class="col-sm-4 pb-5 ps-5 pe-5">
+        <img width="100%" height="340em" src="images/un5.jpg">
+      </div>
+      <div class="col-sm-8 pe-5 ps-5">
+        <div style="text-align: justify;">
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur reiciendis iusto molestiae modi
+            dolor exercitationem ullam. Ipsa molestias consequuntur corrupti facere suscipit, id quaerat vel neque earum
+            nisi consequatur error
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit ratione iste quis atque molestias dolorum
+            accusamus, dignissimos soluta quisquam. Fuga molestias dicta nesciunt quasi, eum libero quis ex dolore vero.
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum perferendis amet consequuntur inventore
+            officiis, temporibus incidunt doloribus! Soluta ad autem deleniti magni harum consequuntur possimus, ea
+            architecto eum dolorum officiis! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae doloribus
+            qui dolor officia dolore nulla. Libero omnis enim soluta facilis nesciunt accusantium quasi obcaecati
+            accusamus veniam odio, fuga consequatur tenetur!
+            Voluptates, hic mollitia, perspiciatis animi itaque quidem ab molestias sint eaque architecto doloremque,
+            ducimus eligendi delectus commodi maxime reprehenderit doloribus blanditiis. Temporibus sunt quidem maxime
+            possimus, consequatur dolore architecto voluptatibus.
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quae maxime ipsam natus aspernatur at quisquam,
+            quas incidunt ad vero? Aperiam explicabo dolorum similique tenetur blanditiis optio magnam a doloremque
+            maiores.
+            Maiores amet id est a numquam tenetur aliquid quae, eligendi repudiandae nihil itaque. Perspiciatis, tempore
+            molestias nam incidunt ullam labore ipsa? Voluptate assumenda amet beatae non eos dicta illum vitae.
+            Iure, tempora culpa? Fugiat veniam rerum repudiandae eligendi ut voluptatem voluptatum atque minima,
+            consectetur, incidunt obcaecati corrupti doloribus commodi id ipsa. Magni odit, quam ducimus saepe nulla
+            iure corrupti dolor. </p>
+        </div>
+      </div>
+    </div>
+
+    <!--About us session end-->
+
+    <!--Your quality session start-->
+
+
+
+    <!--Your quality session end-->
+
+
+    <!--gallary start-->
+
+    <div class="row p-5 ">
+      <div class="col-sm-12">
+        <h1 class="mb-5 text-center ">Gallery</h1>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img  height="350px" src="./images/un1.jpg" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img height="350px" src="./images/un3.jpg">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img height="350px" src="./images/un4.jpg">
+        </div>
+      </div>
+    </div>
+
+    <div class="row p-5 pt-0 pb-0 ">
+      <div class="col-sm-4">
+        <div class="card">
+          <img height="350px" src="./images/un5.jpg" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img height="350px" src="./images/un6.jpg">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img height="350px" src="./images/un2.jpg">
+        </div>
+      </div>
+    </div>
+
+    <!--gallary end-->
+
+    <!--map start-->
+    <div class="row">
+      <div class="col-sm-12 mt-5 p-0 pb-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d115271.34231398292!2d81.84791039999999!
+        3d25.464012800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1698234031814!5m2!1sen!2sin" 
+        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+    <!--map end-->
+
+    <!--footer start-->
+    <div style="position: relative; bottom: 0px;" class="row mt-5 ">
+      <div class="col-sm-12 color-them ">
+        <div class="row ps-5 pe-5 ">
+          <div class="col-sm-3 text-center mt-2 mb-2  ">
+            <img src="./images/1.png" style="height: 25vh; margin-bottom: 3px;">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia inventore quidem nemo reiciendis labore.
+              Repellat fugit officiis sint nemo ipsam pariatur perferendis? Fuga quas, corporis perferendis magni
+              molestias doloribus expedita.</p>
+          </div>
+          <div class="col-sm-3 ">
+            <h6 class="p-3 ">Usefull Links</h6>
+            <ul style="list-style-type:none;">
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Home</li>
+              </a>
+              <a href="./about.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;About us</li>
+              </a>
+              <a href="./deprt.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Department</li>
+              </a>
+              <a href="./registration.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Resgister</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Gallery</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Login</li>
+              </a>
+              <a href="./signup.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Sign-up</li>
+              </a>
+              <a href="./contect us.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Contact us</li>
+              </a>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <h6 class="p-3">Most Improtant Links</h6>
+            <ul style="list-style-type:none;">
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;AKTU Board</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Home Minsitry</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Department</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Resgister</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Gallery</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Login</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Contact us</li>
+              </a>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <div style="border-bottom: 1px solid gold;">
+              <h6 class="text-center pt-3  ">OUR NEWSLETTER</h6>
+            </div>
+            <p class="ms-3 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci nostrum earum,
+              excepturi atque fuga quis porro et cumque eos praesentium, id, nisi quae blanditiis repudiandae. Doloribus
+              modi magnam sunt.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum fugit error neque eveniet reprehenderit,
+              officia reiciendis, inventore consequatur quo ipsam aperiam corporis tempore aspernatur excepturi
+              laudantium expedita nam sit iste!
+            </p>
+            <div class="text-center pb-1"><input class="p-1" type="email" style="border: none;"
+                placeholder="Enter Email" /><button class="p-1"
+                style="border: none; background-color: black; color: white;">Subscribe</button></div>
+            <div class="text-center pt-3">
+              <i class="fa-brands fa-facebook pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-twitter pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-whatsapp pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-instagram pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--footer end-->
+    <!---->
+    <div class="row" style="position: relative; bottom: -1px;">
+      <div class="col-sm-12 text-center bg-dark text-light p-3">
+        &copy;2018 Copyright to Kamadgiri Software Solutions Private Limited. All Rights Reserved.
+      </div>
+    </div>
+    <!---->
+
+  </div><!--container end-->
+  <script>
+    /* script for popup-enquiry */
+
+    let popup = document.getElementById("popup");
+    function openpop() {
+      popup.classList.add("open-pop");
+    }
+    function closepop() {
+      popup.classList.remove("open-pop");
+    }
+
+    /* script for popup-enquiry end */
+
+    /* Script for task file upload start*/
+
+    let tspop=document.getElementById("tspop");
+    function taskpop()
+    {
+      tspop.classList.add("open-tspop");
+    }
+    function taskpopCls()
+    {
+      tspop.classList.remove("open-tspop");
+    }
+
+    /* Script for task file upload end*/
+  </script>
+  <!--validation form(enquiry) start-->
+
+  <script>
+    function validateform(txtname, txtemail, txtmob, txtcity, txtmess, spname, spemail, spmob, spcity, spmess) {
+      var result = true;
+      var name, email, mobno, city, mess, x, y, ch;
+      name = txtname.value.trim();
+      email = txtemail.value.trim();
+      mobno = txtmob.value.trim();
+      city = txtcity.value.trim();
+      mess = txtmess.value.trim();
+      //clearing all previous error masseges......
+      var sp = document.getElementsByClassName("err");
+      for (x = 0; x < sp.length; x++) {
+        sp[x].innerText = "";
+      }
+      //validating name
+      if (name.length == 0) {
+        spname.innerText = "Plese Enter your name";
+        result = false;
+      }
+      else {
+        x = getWordCount(name)
+        if (x < 2) {
+          spname.innerText = "Please Enter your full name";
+          status = false;
+        }
+      }
+      //validation emailid..
+      if (email.length == 0) {
+        spemail.innerText = "Please Enter your Email-id";
+        status = false;
+      }
+      else {
+        x = getWordCount(email)
+        if (x < 2) {
+          spemail.innerText = "Please Enter valid email";
+          status = false;
+        }
+
+      }
+      // validating mobile no..
+      if (mobno.length == 0) {
+        spmob.innerText = "Please Enter your mobile No.";
+        result = false;
+      }
+      else if (mobno.length != 10) {
+        spmob.innerText = "Mobile number must have exact 10 digit.";
+        result = false;
+
+      }
+      else {
+        var ch = mobno.charCodeAt(0);
+      }
+      if (!(ch >= 54 && ch <= 57)) {
+        spmob.innerText = "Invalid Indian Mobile number.";
+        result = false;
+      }
+      //validation city
+      if (city.length == 0) {
+        spcity.innerText = "Please Enter a city.";
+        result = false;
+      }
+      //validation message
+      if (mess.length == 0) {
+        spmess.innerText = "Please Enter Enquiry message.";
+        result = false;
+      }
+      return result;
+    }
+    function getWordCount(str) {
+      var count = 1, x;
+      for (x = 0; x < str.length; x++) {
+        var ch = str.charAt(x)
+        if (ch == '.' || ch == ',' || ch == '!' || ch == '?' || ch == ' ' || ch == '@') {
+          count++;
+        }
+      }
+      return count;
+    }
+
+  </script>
+  <!--validation form(enquiry) end-->
+
+  <!--task upload script start-->
+  <script>
+
+  var names, dept, roll, sub, task, x,r;
+        function validatetask(stuname, studept, sturoll, stusub, stutask, spnames, spdept, sproll, spsub, sptask) {
+            status = true;
+            names = stuname.value.trim();
+            dept = studept.value.trim();
+            roll = sturoll.value.trim();
+            sub = stusub.value.trim();
+            task = stutask.value;
+            r=roll.charCodeAt(0);
+            var sp = document.getElementsByClassName("err");
+            for (x = 0; x < sp.length; x++) {
+                sp[x].innerText = "";
+            }
+            
+            // validate name.
+            if (names.length == 0) {
+                spnames.innerText = "Enter your Name!";
+                status = false;
+
+            }
+            else 
+            {
+                if (names.length<4)
+                {
+                    spnames.innerText="Please Enter Full Name";
+                    status=false;
+                }
+            }
+            // validate dept
+            if (dept.length == 0) {
+                spdept.innerText = "Please Select Department";
+                status = false;
+            }
+
+            // validate Enrollment no
+            if (roll.length == 0) {
+                sproll.innerText = "Please Enter Enrollment";
+                status = false;
+            }
+            else if (roll.length != 15) {
+                sproll.innerText = "Enrollment must have 15 digits";
+                status = false;
+            }
+            // validate subject
+            if (sub.length == 0) {
+                spsub.innerText = "Enter Your Subject";
+                status = false;
+            }
+            
+            // validate task 
+            if (task.length == 0) {
+                sptask.innerText = "Please Select File";
+                status = false;
+            }
+            else {
+                var myfile = stutask.files[0];
+                var fname = myfile.name;
+                var filesize = myfile.size;
+                var extension = fname.substring(fname.lastIndexOf('.')).toUpperCase();
+                if (extension != ".PDF") {
+                    sptask.innerText = "Upload Invalid File only pdf";
+                    status = false;
+                }
+                else {
+                    var sizefile = filesize / 1024;
+                    if (sizefile > 1000) {
+                        sptask.innerText = "File size is too lagre";
+                        status = false;
+                    }
+
+                }
+            }
+            return status;
+        }
+</script>
+
+  <!--task upload script end-->
+</body>
+
+</html>

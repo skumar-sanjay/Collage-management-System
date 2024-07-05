@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Document</title>
+    <style>
+      .err
+      {
+          color:red;
+
+      }
+  </style>
+  <script>
+  function  validateform(txtname,txtemail,txtmob,txtcity,txtmess,spname,spemail,spmob,spcity,spmess)
+    {
+        var result=true;
+        var name,email,mobno,city,mess,x,y,ch;
+        name=txtname.value.trim();
+        email=txtemail.value.trim();
+        mobno=txtmob.value.trim();
+        city=txtcity.value.trim();
+        mess=txtmess.value.trim();
+        //clearing all previous error masseges......
+       var sp=document.getElementsByClassName("err");
+            for(x=0;x<sp.length;x++)
+            {
+                sp[x].innerText="";
+            }
+    //validating name
+    if(name.length==0)
+       {
+        spname.innerText="Plese enter your name";
+        result=false;
+       }
+       else
+       {
+        x=getWordCount(name)
+        if(x<2)
+        {
+          spname.innerText="Plese enter your full name";
+          status=false;
+        }
+       } 
+        //validation emailid..
+        if(email.length==0)
+       {
+        spemail.innerText="Plese enter your email";
+        status=false;
+       } 
+       else
+       {
+        x=getWordCount(email)
+        if(x<2)
+        {
+          spemail.innerText="Plese enter valid email";
+        status=false;
+        }
+
+       }
+        // validating mobile no..
+        if(mobno.length==0)
+          {
+             spmob.innerText="Please enter your mobileno.";
+             result=false;
+          }
+        else if(mobno.length!=10)
+          {
+             spmob.innerText="mobile number must have exact 10 digit.";
+             result=false;
+
+          }
+        else
+          {     
+            var cha=mobno.charCodeAt(0);
+          }
+        if(!(ch>=54 && ch<=57))
+          {
+            spmob.innerText="Invalid Indian mobile number.";
+            result=false;
+          }
+        //validation city
+      if(city.length==0)
+        {
+           spcity.innerText="Please enter a city.";
+           result=false;
+        }
+      //validation message
+      if(mess.length==0)
+        {
+           spmess.innerText="Please enter any message.";
+           result=false;
+        }
+        return result;
+      }
+      function getWordCount(str) {
+            var count = 1, x;
+            for (x = 0; x < str.length; x++) {
+                var ch = str.charAt(x)
+                if (ch == '.' || ch == ',' || ch == '!' || ch == '?' || ch == ' ' || ch=='@') {
+                    count++;
+                }
+            } 
+            return count;
+        }
+    
+  </script>
+</head>
+<body>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Enquiry
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Enquiry Form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="save.jsp" method="post" class="row g-3" >
+                <div class="col-md-6">
+                  <label for="inputName4" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="txtname">
+                  <span id="spname" class="err"></span>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="txtemail">
+                  <span id="spemail"  class="err" ></span>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputMobno" class="form-label">Mobile No</label>
+                  <input type="Number" class="form-control" id="txtmob" >
+                  <span class="err" id="spmob" ></span>
+                </div>
+                <div class="col-md-6">
+                  <label for="inputCity" class="form-label">City</label>
+                  <input type="text" class="form-control" id="txtcity" >
+                  <span id="spcity" class="err" ></span>
+                </div>
+                <div class="mb-3">
+                    <label for="FormControl">Enter any message</label>
+                    <textarea class="form-control" id="txtmess" rows="4"></textarea>
+                    <span id="spmess" class="err" ></span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" 
+                    onclick="return validateform(txtname,txtemail,txtmob,txtcity,txtmess,
+                    spname,spemail,spmob,spcity,spmess)">Send Message</button>
+                  </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+</body>
+</html>

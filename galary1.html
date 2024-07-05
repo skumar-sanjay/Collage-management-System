@@ -1,0 +1,486 @@
+
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+      .color-them {
+    background-color: #2E97A7;
+    color: white;
+  }
+  .apna-li{
+    padding: 15px;
+  }
+
+  .font-color {
+    color: #2E97A7;
+    font-weight: bold;
+  }
+      .card:hover {
+        transform: scale(1.100);
+        cursor: zoom-in;
+        transition: all 1.10s;
+      }
+    
+      .card-body:hover {
+    
+        background-color: #2E97A7;
+        color: white;
+      }
+      
+      
+    
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 50px;
+      font-size:60px;
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+    }
+    .close-button:hover{
+      color: rgb(255, 0, 0);
+    }
+    
+    #popupImage {
+      display: block;
+      max-width: 60%;
+      max-height: 60%;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .image-popup-container {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+  margin: 0PX;
+  padding-top:40%;
+}
+.col-sm-12
+{
+  margin-bottom:0%;
+}
+.card-title
+{
+  text-align: center;
+}
+
+  
+  .prev-button,
+  .next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+
+    color: white;
+    font-size: 24px;
+    line-height: 40px;
+    cursor: pointer;
+    
+  }
+
+
+
+    .prev-button {
+      left: 24%;
+    }
+
+    .next-button {
+      right: 23%;
+      
+    }
+.popup-text {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+</style>
+
+    </style>
+    <script>
+      // function to show image when we click on a image
+function showImage(imageSrc) {
+let popupImage = document.getElementById("popupImage");
+popupImage.src = imageSrc;
+
+let imagePopup = document.getElementById("imagePopup");
+imagePopup.style.display = "block";
+document.body.style.overflow = "hidden";
+}
+// function to hide the image when we click on cross button
+function closeImage() {
+let imagePopup = document.getElementById("imagePopup");
+imagePopup.style.display = "none";
+document.body.style.overflow = "auto";
+}
+
+function showPrevImage() {
+      let popupImage = document.getElementById("popupImage");
+      let currentSrc = popupImage.src;
+      let imageList = document.querySelectorAll(".card-img-top");
+      for (let i = 0; i < imageList.length; i++) {
+        if (imageList[i].src === currentSrc) {
+          let prevIndex = (i - 1 + imageList.length) % imageList.length;
+          popupImage.src = imageList[prevIndex].src;
+          break;
+        }
+      }
+    }
+
+    // Function to show the next image
+    function showNextImage() {
+      let popupImage = document.getElementById("popupImage");
+      let currentSrc = popupImage.src;
+      let imageList = document.querySelectorAll(".card-img-top");
+      for (let i = 0; i < imageList.length; i++) {
+        if (imageList[i].src === currentSrc) {
+          let nextIndex = (i + 1) % imageList.length;
+          popupImage.src = imageList[nextIndex].src;
+          break;
+        }
+      }
+    }
+
+  </script>
+
+</head>
+<body>
+ <div class="container-fluid">
+  <div class="row">
+    <div class="row m-0 p-0 ">
+      <div class="col-sm-4 bg-light p-0 m-0 ">
+        <center><img src="./images/1-removebg-preview.png" style=" height: 15vh; padding: 0; margin: 0px; " /></center>
+      </div>
+      <!--logo end-->
+      <!--navbar start-->
+      <div class="col-sm-8 mt-0 pt-3 bg-light">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <i class="fa fa-graduation-cap fa-lg" style="color: #2E97A7;"></i>
+            </a>
+            <button class="navbar-toggler" style="background-color: #EEEEEE; border-color:#362FD9 ; "
+              type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon" style="width:1em;height:1em;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " aria-current="page" href="./Index1.html">Home</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="./about.html">About</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="./deprt.html">Department</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="#">Gallery</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="./reg.html">Register</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="#">Login</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="./signup.html">Sign-up</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="./contect us.html">Contact</a>
+                </li>
+                <li class="nav-item apna-li">
+                  <a class="nav-link font-color " href="#"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!--navbar end-->
+      <h1 class="mb-4 mt-3 p-3" style="text-align: center;  font-style:italic;  font-weight: bold;" >Gallery</h1>
+    <div class="col-sm-12">
+      <div class="container">
+    
+        <div class="row">
+          
+           
+          
+          <div class="col-sm-12">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st1.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Proud Moments</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st2.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  
+                  <div class="card-body">
+                    <h5 class="card-title">Speech</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st3.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Class Room</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.
+                      </p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st15.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Farewell Photos</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st13 (2).jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Sir and Mam</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="images/st5.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Gifts By Student</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                      .</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st6.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Prefromence By Students</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st7.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Event</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st8.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Campus</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st9.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Randome photos</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st10.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Study Time</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st11.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Award Distibution</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st12.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Group Photos</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st4.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Group Photos</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card">
+                  <img src="./images/st14.jpeg" class="card-img-top" alt="..." onclick="showImage(src)">
+                  <div class="card-body">
+                    <h5 class="card-title">Group Photos</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="image-popup-container" id="imagePopup">
+                <span class="close-button" onclick="closeImage()">×</span>
+                <img src=""  id="popupImage">
+                <div class="popup-text"></div>
+                <div class="prev-button" onclick="showPrevImage()"><i class="fa-solid fa-chevron-left"></i></div>
+              <div class="next-button" onclick="showNextImage()"><i class="fa-solid fa-chevron-right"></i></div>
+              
+             </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!--footer start-->
+    <div style="position: relative; bottom: 0px;" class="row mt-5 p-0 m-0">
+      <div class="col-sm-12 color-them ">
+        <div class="row ps-5 pe-5 ">
+          <div class="col-sm-3 text-center mt-2 mb-2  ">
+            <img src="./images/1.png" style="height: 25vh; margin-bottom: 3px;">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia inventore quidem nemo reiciendis labore.
+              Repellat fugit officiis sint nemo ipsam pariatur perferendis? Fuga quas, corporis perferendis magni
+              molestias doloribus expedita.</p>
+          </div>
+          <div class="col-sm-3 ">
+            <h6 class="p-3 ">Usefull Links</h6>
+            <ul style="list-style-type:none;">
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Home</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;About us</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Department</li>
+              </a>
+              <a href="./registration.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Resgister</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Gallery</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Login</li>
+              </a>
+              <a href="./signup.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Sign-up</li>
+              </a>
+              <a href="./contect us.html" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Contact us</li>
+              </a>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <h6 class="p-3">Most Improtant Links</h6>
+            <ul style="list-style-type:none;">
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;AKTU Board</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Home Minsitry</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Department</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Resgister</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Gallery</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Login</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;">&rightarrow;&nbsp; Contact us</li>
+              </a>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <div style="border-bottom: 1px solid gold;">
+              <h6 class="text-center pt-3  ">OUR NEWSLETTER</h6>
+            </div>
+            <p class="ms-3 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci nostrum earum,
+              excepturi atque fuga quis porro et cumque eos praesentium, id, nisi quae blanditiis repudiandae. Doloribus
+              modi magnam sunt.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum fugit error neque eveniet reprehenderit,
+              officia reiciendis, inventore consequatur quo ipsam aperiam corporis tempore aspernatur excepturi
+              laudantium expedita nam sit iste!
+            </p>
+            <div class="text-center pb-1"><input class="p-1" type="email" style="border: none;"
+                placeholder="Enter Email" /><button class="p-1"
+                style="border: none; background-color: black; color: white;">Subscribe</button></div>
+            <div class="text-center pt-3">
+              <i class="fa-brands fa-facebook pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-twitter pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-whatsapp pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-instagram pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+              <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--footer end-->
+    <!---->
+    <div class="row m-0 p-0" style="position: relative; bottom: -1px;">
+      <div class="col-sm-12 text-center bg-dark text-light p-3">
+        &copy;2018 Copyright to Kamadgiri Software Solutions Private Limited. All Rights Reserved.
+      </div>
+    </div>
+    <!---->
+  </div>
+ </div>
+</body>
+
+</html>

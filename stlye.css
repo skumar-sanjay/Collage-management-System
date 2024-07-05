@@ -1,0 +1,268 @@
+.color-them {
+    background-color: #2E97A7;
+    color: white;
+  }
+
+  .apna-li{
+    padding: 15px;
+  }
+
+  .font-color {
+    color: #2E97A7;
+    font-weight: bold;
+  }
+
+  #slider {
+    background-image: url('./images/3.jpg');
+    height:auto;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    animation: animated-img 10s ease-in-out infinite;
+  }
+
+  .self-btn{
+    background-color: #2E97A7;
+    color: wheat;
+  }
+
+  .self-btn:hover{
+    background-color: #25727d;
+    color:rgba(239, 221, 221, 0.882);
+  }
+
+  @keyframes animated-img {
+
+    0%,
+    100% {
+      background-image: url('./images/3.jpg');
+    }
+
+    50% {
+      background-image: url('./images/4.jpg');
+    }
+
+    100%,
+    0% {
+      background-image: url('./images/5.jpg');
+    }
+  }
+
+  #slider-inner {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+  }
+
+  /* style for counter start */
+
+  .wrapx{
+    position:relative;
+    width: 80vw;
+    transform: translate(-50%, -50%);
+    top: 65%; 
+    left: 50%;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+.conta{
+    width: 28vmin;
+    height: 28vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1em 0;
+    position: relative;
+    font-size: 16px;
+    border-radius: 0.5em;
+    background-color: #21242b;
+    border-bottom: 5px solid #2E97A7;
+}
+.conta i{
+    color: #2E97A7;
+    font-size: 2.5em;
+    text-align: center;
+}
+.conta .num{
+    color: #ffffff;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 2em;
+}
+.conta .text{
+    color: #e0e0e0;
+    font-weight: 400;
+    text-align: center;
+    font-size: 1em;
+    pad:0.7em 0;
+    line-height: 0;
+}
+@media screen and (max-width:1024px) {
+    .wrapx{
+        width: 85vw;
+    }
+    .conta{
+        height: 26vmin;
+        width: 26vmin;
+        font-size: 12px;
+    }
+    
+}
+@media screen and (max-width: 768px) {
+    .wrapx{
+       width: 90vw;  /* width: 90vw;   */ 
+        flex-wrap: wrap;
+        /* gap: 30px; */ gap: 30px;
+    }
+    .conta{
+        width: calc(50% - 10%); /* width: calc(50% - 40%);  */
+        height: 20vmin;
+        font-size: 8px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .wrapx{
+        gap: 15px;
+    }
+    .conta{
+        width: 100%;
+        height: 18vmin;
+        font-size: 8px;
+    }
+}
+
+  /* style for counter end */
+
+  /* Card slider css start */
+
+  #card-slider{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #efefef;
+  }
+
+  .slide-container{
+    max-width: 1120px;
+    width: 100%;
+    background-color: grey;
+    padding: 40px 0;
+  }
+
+  .slide-content{
+    margin: 0px 40px;
+    overflow: hidden;
+    border-radius: 25px;
+  }
+
+  .cardsm{
+    width: 320px;
+    border-radius: 25px;
+    background-color: #fff;
+  }
+
+  .image-content,
+  .cardsm-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+  }
+
+  .image-content{
+    row-gap: 5px;
+    position: relative;
+    padding: 25px 0;
+
+  }
+
+  .overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #4070f4;
+    border-radius: 25px 25px 0 25px;
+
+  }
+
+  .overlay::before,
+  .overlay::after{
+    content: '';
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #4070f4;
+    right: 0;
+    bottom: -40px;
+  }
+
+  .overlay::after{
+    border-radius: 0 25px 0 0;
+    background-color: #fff;
+  }
+
+  .cardsm-image{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 2px;
+  }
+
+  .cardsm-image .cardsm-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #4070f4;
+  }
+
+  .name{
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .description{
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+  }
+
+  .bnt{
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px 16px;
+    background-color: #4070f4;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .bnt:hover{
+    background-color: #265df2;
+  }
+
+ 
+
+  /* Card slider css end */
+
+  /* @media screen and(max-width:900px) {
+    #upoe{
+      font-size: 5px;
+    }
+  } */
+
+  

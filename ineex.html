@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .color-them {
+      background-color: #362FD9;
+      color: white;
+    }
+
+    .font-color {
+      color: #2E97A7;
+    }
+
+    #slider {
+      background-image: url('./images/3.jpg');
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 0px;
+      margin: 0px;
+      color: white;
+      animation: animated-img 10s ease-in-out infinite;
+    }
+
+    @keyframes animated-img {
+
+      0%,
+      100% {
+        background-image: url('./images/3.jpg');
+      }
+
+      50% {
+        background-image: url('./images/4.jpg');
+      }
+
+      100%,
+      0% {
+        background-image: url('./images/5.jpg');
+      }
+    }
+
+    #slider-inner {
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 100vh;
+      width: 100%;
+      background-size: cover;
+    }
+
+    #UGOE {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    #UGOE-P {
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+
+    }
+
+    #res-btn {
+      position: absolute;
+      left: 50%;
+      top: 80%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+
+</head>
+
+
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 color-them d-flex justify-content-center ">
+        <i class="fa-solid fa-envelope pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp; <span class="pb-1"
+          style="color: #EEEEEE;">abc@gmail.com</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-solid fa-phone-volume pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp; <span class="pd-1"
+          style="color: #EEEEEE;">+91-9876565434</span>
+      </div>
+      <div class="col-sm-6 color-them d-flex justify-content-center ">
+        <i class="fa-brands fa-facebook pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-twitter pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-whatsapp pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-instagram pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+      </div>
+      <!--background Images start-->
+      <div class="col-sm-12 p-0">
+        <div id="slider">
+          <div id="slider-inner">
+            <!--logo start-->
+            <div class="row">
+              <div class="col-sm-4"></div>
+              <!--logo end-->
+              <!--navbar start-->
+              <div class="col-sm-8 p-0">
+                <nav class="navbar navbar-expand-lg">
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                      <i class="fa fa-graduation-cap fa-lg" style="color: #2E97A7;"></i>
+                    </a>
+                    <button class="navbar-toggler" style="background-color: #EEEEEE; border-color:#362FD9 ; "
+                      type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                          <a class="nav-link font-color " aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link font-color " href="#">About us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a class="nav-link  font-color " href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Department
+                          </a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                              <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                          </ul>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link font-color " href="#"></a>
+                        </li>
+                      </ul>
+                      <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+              <!--navbar end-->
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--Background Images end-->
+    </div>
+    <!--Princeple session start-->
+    <div class="row m-5">
+      <div class="col-sm-5 bg-info ">
+        <img src="...">
+      </div>
+      <div class="col-sm-7 bg-success ">
+        <h2 class="text-center"> Our Principle</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis aliquam, cum eaque voluptatem, earum soluta
+          totam cupiditate amet maiores officiis quos voluptatum praesentium, ut non placeat ratione beatae consequuntur
+          obcaecati!
+          Reprehenderit quisquam repellendus dolores rerum minima expedita. Maiores reiciendis dolor ad quibusdam
+          consectetur officiis in magni atque possimus hic totam laboriosam dolorum, culpa cumque minus distinctio
+          nostrum ut. Laboriosam, commodi!
+          Tempore amet perferendis dolorem architecto, nobis officiis eum ducimus excepturi hic id obcaecati, ratione
+          veniam neque facilis explicabo! Officiis quasi officia ab pariatur delectus iusto, earum commodi incidunt iure
+          maiores!
+          Deserunt quae ad error, harum blanditiis tempora unde quis consequuntur totam fuga cumque sint laboriosam
+          mollitia aspernatur commodi voluptatem tenetur. Perspiciatis saepe consectetur libero laborum quisquam quis,
+          quibusdam eveniet fugit.
+          Numquam asperiores, veritatis molestiae tempora laudantium illo, voluptates facilis id soluta voluptatem neque
+          commodi? Vero porro quam ab laudantium, excepturi aperiam aspernatur doloremque! Harum odio quam aspernatur
+          consequatur suscipit placeat.
+          Quas provident temporibus odio at. Quos iste nisi odio, doloribus fuga consequatur eum fugit? Possimus
+          asperiores, eveniet velit nulla voluptate voluptates commodi, beatae ipsa deleniti eligendi cum, sed adipisci
+          vero!
+          Fugiat vel nobis earum, deserunt voluptas quasi officia nihil a quaerat assumenda dolor illo. Non, facilis
+          numquam? Iste, modi incidunt repudiandae voluptas delectus beatae quae error officiis iusto quod eveniet.
+          Facilis sit vero possimus eaque fugit dolorum. Quisquam eaque voluptate nesciunt consequatur dolore beatae et
+          laborum, qui illo dicta cupiditate non, commodi consequuntur. Labore adipisci, recusandae tenetur laborum
+          maxime iure?
+          Corporis, explicabo repudiandae ipsa laborum eius, exercitationem voluptates quos assumenda fugiat excepturi
+          ipsam doloremque rerum nulla aliquam placeat laboriosam, quasi officia unde molestias. Numquam sit cum nulla
+          voluptatum, sint porro!
+          Voluptatibus debitis eveniet nobis illo quos ipsum delectus dolorem soluta odio quis dolores consequuntur
+          beatae tempore assumenda facere repellat accusamus sequi odit, nemo incidunt minima similique rem ab. Nostrum,
+          ducimus.</p>
+      </div>
+    </div>
+    <!--Princeple session end-->
+    <!--footer start-->
+    <div class="row">
+      <div class="col-sm-12 bg-success ">
+        <div class="row">
+          <div class="col-sm-3 text-center ms-5  mt-2 mb-2 bg-danger ">
+            <img src="...">
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia inventore quidem nemo reiciendis labore.
+              Repellat fugit officiis sint nemo ipsam pariatur perferendis? Fuga quas, corporis perferendis magni
+              molestias doloribus expedita.</p>
+          </div>
+          <div class="col-sm-3 ">
+            <h6 class="p-3 ">Usefull Links</h6>
+            <ul style="list-style-type:none;">
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Home</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;About us</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Department</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Resgister</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; ">&rightarrow;&nbsp; Gallery</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Login</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; "> &rightarrow;&nbsp;Contact us</li>
+              </a>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <h6 class="p-3">Most Improtant Links</h6>
+            <ul style="list-style-type:none;">
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px; " > &rightarrow;&nbsp;AKTU Board</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;" >&rightarrow;&nbsp; Home Minsitry</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;" >&rightarrow;&nbsp; Department</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;" >&rightarrow;&nbsp; Resgister</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;" >&rightarrow;&nbsp; Gallery</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;" >&rightarrow;&nbsp; Login</li>
+              </a>
+              <a href="#" style="text-decoration: none; color:white; font-weight: 500; ">
+                <li style="border-bottom: 1px solid black; padding-bottom: 5px;" >&rightarrow;&nbsp; Contact us</li>
+              </a>
+            </ul>
+          </div>
+          <div class="col-sm-3">
+            <div style="border-bottom: 1px solid gold;"><h6 class="text-center pt-3  ">OUR NEWSLETTER</h6></div>
+            <p class="ms-3 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum adipisci nostrum earum, excepturi atque fuga quis porro et cumque eos praesentium, id, nisi quae blanditiis repudiandae. Doloribus modi magnam sunt.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum fugit error neque eveniet reprehenderit, officia reiciendis, inventore consequatur quo ipsam aperiam corporis tempore aspernatur excepturi laudantium expedita nam sit iste!
+            </p>
+            <div class="text-center pb-1" ><input class="p-1" type="email" style="border: none;" placeholder="Enter Email" /><button class="p-1" style="border: none; background-color: #362FD9; color: white;" >Subscribe</button></div>
+            <div class="text-center pt-3">
+              <i class="fa-brands fa-facebook pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-twitter pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-whatsapp pt-1" style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-instagram pt-1 " style="color: #EEEEEE;"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+        <i class="fa-brands fa-linkedin pt-1 " style="color: #EEEEEE;"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--footer end-->
+    <!---->
+    <div class="row">
+      <div class="col-sm-12 text-center bg-dark text-light p-3">
+        &copy;2018 Copyright to Kamadgiri Software Solutions Private Limited. All Rights Reserved.
+      </div>
+    </div>
+    <!---->
+  </div> <!--end of the main row-->
+  </div> <!--end of the conatainer-->
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
