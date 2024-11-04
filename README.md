@@ -1,5 +1,9 @@
  Collage Management System deals with all kind of student details, acadmic related reports, collage details, course details and resource related details too.
  It is an integrated web application that handles various acadmic and non acadmic activities of a collage/institue. The system can access by every students.
+
+ How to Run=>
+ => To run this program click on index.html.
+
  
  Features-
  =========
